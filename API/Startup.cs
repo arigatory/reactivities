@@ -1,4 +1,6 @@
 using API.Extensions;
+using Application.Activities;
+using FluentValidation.AspNetCore;
 
 namespace API;
 
@@ -14,7 +16,9 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
 
-        services.AddControllers();
+        services.AddControllers().AddFluentValidation(config => {
+            config.RegisterValidatorsFromAssemblyContaining<Create>();
+        });
         services.AddApplicationServices(_config);
     }
 
