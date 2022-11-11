@@ -24,7 +24,7 @@ public class Delete
         {
             var activity = await _context.Activities.FindAsync(request.Id);
             
-            if (activity is null) return null;
+            if (activity is null) throw new NotImplementedException();
             
             _context.Remove(activity);
             
