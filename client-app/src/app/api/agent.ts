@@ -11,6 +11,14 @@ const sleep = (delay: number) => {
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
+axios.interceptors.request.use((config) => {
+  const token = store.commonStore.token;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 axios.interceptors.response.use(
   async (respones) => {
     await sleep(1000);

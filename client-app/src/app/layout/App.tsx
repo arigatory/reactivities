@@ -12,18 +12,34 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import NotFound from '../../features/errors/Notfound';
 import ServerError from '../../features/errors/ServerError';
 import LoginForm from '../../features/users/LoginForm';
+import { useStore } from '../api/stores/store';
+import { useEffect } from 'react';
+import LoadingComponent from './LoadingComponent';
+import ModalContainer from '../common/modals/ModalContainer';
 
 function App() {
   const location = useLocation();
+  const { commonStore, userStore } = useStore();
+
+  useEffect(() => {
+    if (commonStore.token) {
+      userStore.getUser().finally(() => commonStore.setAppLoaded());
+    } else {
+      commonStore.setAppLoaded();
+    }
+  }, [commonStore, userStore]);
+
+  if (!commonStore.appLoaded) <LoadingComponent content="Loading app..." />;
 
   return (
     <>
+      <ToastContainer position="bottom-right" hideProgressBar />
+      <ModalContainer />
       <Route exact path="/" component={HomePage} />
       <Route
         path={'/(.+)'}
         render={() => (
           <>
-            <ToastContainer position="bottom-right" hideProgressBar />
             <NavBar />
             <Container style={{ marginTop: '7em' }}>
               <Switch>
