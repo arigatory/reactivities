@@ -1,23 +1,19 @@
 import ReactDOM from 'react-dom/client';
-import App from './app/layout/App';
 import reportWebVitals from './reportWebVitals';
 import { store, StoreContext } from './app/api/stores/store';
-import { Router } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import './app/layout/styles.css';
-import {createBrowserHistory} from 'history';
-
-export const history = createBrowserHistory();
+import { router } from './app/rotuter/Routes';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <StoreContext.Provider value={store}>
-    <Router history={history}>
-      <App />
-    </Router>
+    <RouterProvider router={router} />
   </StoreContext.Provider>
 );
 
