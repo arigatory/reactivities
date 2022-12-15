@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { Button, Icon, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../app/models/activity';
 import ActivityListItemAttendee from './ActivityListItemAttendee';
+import { observer } from 'mobx-react-lite';
 
 interface Props {
   activity: Activity;
 }
 
-export default function ActivityListItem({ activity }: Props) {
+export default observer(function ActivityListItem({ activity }: Props) {
   return (
     <Segment.Group>
       <Segment>
@@ -25,14 +26,17 @@ export default function ActivityListItem({ activity }: Props) {
             style={{ marginBottom: 3 }}
             size="tiny"
             circular
-            src="/assets/user.png"
+            src={activity.host?.image || '/assets/user.png'}
           />
           <Item.Content>
             <Item.Header as={Link} to={`/activities/${activity.id}`}>
               {activity.title}
             </Item.Header>
             <Item.Description>
-              Hosted by {activity.host?.displayName}
+              Hosted by{' '}
+              <Link to={`/profiles/${activity.hostUsername}`}>
+                {activity.host?.displayName}
+              </Link>
             </Item.Description>
             {activity.isHots && (
               <Item.Description>
@@ -72,4 +76,4 @@ export default function ActivityListItem({ activity }: Props) {
       </Segment>
     </Segment.Group>
   );
-}
+});
