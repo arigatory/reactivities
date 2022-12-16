@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Button, Card, Grid, Header, Image, Tab } from 'semantic-ui-react';
 import { useStore } from '../../app/api/stores/store';
 import PhotoUploadWidget from '../../app/common/imageUpload/PhotoUploadWidget';
-import { Profile } from '../../app/models/profile';
+import { Photo, Profile } from '../../app/models/profile';
 
 interface Props {
   profile: Profile;
@@ -11,9 +11,37 @@ interface Props {
 
 export default observer(function ProfilesPhotos({ profile }: Props) {
   const {
-    profileStore: { isCurrentUser },
+    profileStore: {
+      isCurrentUser,
+      uploadPhoto,
+      uploading,
+      loading,
+      setMainPhoto,
+      deletePhoto,
+    },
   } = useStore();
   const [addPhotoMode, setAddPhotoMode] = useState(false);
+  const [targer, setTarget] = useState('');
+
+  function handlePhotoUpload(file: Blob) {
+    uploadPhoto(file).then(() => setAddPhotoMode(false));
+  }
+
+  function handleSetMainPhoto(
+    photo: Photo,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    setTarget(e.currentTarget.name);
+    setMainPhoto(photo);
+  }
+
+  function handleDeletePhoto(
+    photo: Photo,
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    setTarget(e.currentTarget.name);
+    deletePhoto(photo);
+  }
 
   return (
     <Tab.Pane>
@@ -31,12 +59,37 @@ export default observer(function ProfilesPhotos({ profile }: Props) {
         </Grid.Column>
         <Grid.Column width={16}>
           {addPhotoMode ? (
-            <PhotoUploadWidget />
+            <PhotoUploadWidget
+              uploadPhoto={handlePhotoUpload}
+              loading={uploading}
+            />
           ) : (
             <Card.Group itemsPerRow={5}>
               {profile.photos?.map((photo) => (
                 <Card key={photo.id}>
                   <Image src={photo.url} />
+                  {isCurrentUser && (
+                    <Button.Group fluid widths={2}>
+                      <Button
+                        basic
+                        color="green"
+                        content="Main"
+                        name={'main' + photo.id}
+                        disabled={photo.isMain}
+                        loading={targer === 'main' + photo.id && loading}
+                        onClick={(e) => handleSetMainPhoto(photo, e)}
+                      />
+                      <Button
+                        basic
+                        color="red"
+                        icon="trash"
+                        loading={targer === photo.id && loading}
+                        onClick={(e) => handleDeletePhoto(photo, e)}
+                        disabled={photo.isMain}
+                        name={photo.id}
+                      />
+                    </Button.Group>
+                  )}
                 </Card>
               ))}
             </Card.Group>
