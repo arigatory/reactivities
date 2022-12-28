@@ -1,7 +1,7 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { User, UserFormValues } from '../../models/user';
-import { router } from '../../rotuter/Routes';
-import agent from '../agent';
+import { User, UserFormValues } from '../models/user';
+import { router } from '../rotuter/Routes';
+import agent from '../api/agent';
 import { store } from './store';
 
 export default class UserStore {

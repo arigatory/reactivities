@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image, Label } from 'semantic-ui-react';
-import { useStore } from '../../../app/api/stores/store';
+import { useStore } from '../../../app/stores/store';
 import { Activity } from '../../../app/models/activity';
 
 const activityImageStyle = {

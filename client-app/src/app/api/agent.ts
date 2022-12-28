@@ -4,7 +4,7 @@ import { Activity, ActivityFormValues } from '../models/activity';
 import { Photo, Profile } from '../models/profile';
 import { User, UserFormValues } from '../models/user';
 import { router } from '../rotuter/Routes';
-import { store } from './stores/store';
+import { store } from '../stores/store';
 
 const sleep = (delay: number) => {
   return new Promise((resolve) => setTimeout(resolve, delay));

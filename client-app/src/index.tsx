@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
-import { store, StoreContext } from './app/api/stores/store';
+import { store, StoreContext } from './app/stores/store';
 import { RouterProvider } from 'react-router-dom';
 import 'react-calendar/dist/Calendar.css';
 import 'react-datepicker/dist/react-datepicker.css';

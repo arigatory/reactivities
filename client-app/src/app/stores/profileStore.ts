@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
-import { Photo, Profile } from '../../models/profile';
-import agent from '../agent';
+import { Photo, Profile } from '../models/profile';
+import agent from '../api/agent';
 import { store } from './store';
 
 export default class ProfileStore {
