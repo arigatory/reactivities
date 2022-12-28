@@ -4,14 +4,12 @@ import {
   Segment,
   Header,
   Comment,
-  Button,
   Loader,
   TextArea,
 } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import { Link } from 'react-router-dom';
 import { Formik, Form, Field, FieldProps } from 'formik';
-import MyTextArea from '../../../app/common/form/MyTextArea';
 import * as Yup from 'yup';
 import { formatDistanceToNow } from 'date-fns';
 
