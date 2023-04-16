@@ -50,7 +50,7 @@ public static class ApplicationServiceExtensions
                 // var pgHost = "reactivities-arigatory-db.fly.dev";
                 // var pgPort = "5432";
 
-                connStr = "Server=fdaa:1:744a:0:1::4;Port=5432;User Id=postgres;Password=eu5ZHIvz4ehZ0wU;Database=reactivities-arigatory-db;";
+                connStr = "Server=fdaa:1:744a:0:1::4;Port=5432;User Id=postgres;Password=eu5ZHIvz4ehZ0wU;Database=reactivities-arigatory;";
 
             }
 
