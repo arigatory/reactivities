@@ -1,4 +1,4 @@
-# fly.toml file generated for reactivities-arigatory on 2023-04-16T13:19:06+03:00
+# fly.toml file generated for reactivities-arigatory on 2023-04-16T15:02:20+03:00
 
 app = "reactivities-arigatory"
 kill_signal = "SIGINT"
@@ -9,9 +9,9 @@ processes = []
   image = "arigatory/reactivities:latest"
 
 [env]
-  ASPNETCORE_URLS="http://+:8080"
-  Cloudinary__CloudName="dkmeqzknc"
-  Cloudinary__ApiKey="631647524351687"
+  ASPNETCORE_URLS = "http://+:8080"
+  Cloudinary__ApiKey = "631647524351687"
+  Cloudinary__CloudName = "dkmeqzknc"
 
 [experimental]
   auto_rollback = true
