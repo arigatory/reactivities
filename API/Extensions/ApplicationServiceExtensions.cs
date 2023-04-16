@@ -47,7 +47,7 @@ public static class ApplicationServiceExtensions
 
                 var pgUser = "postgres";
                 var pgPass = pgUserPass.Split(":")[1];
-                var pgHost = "reactivities-arigatory-db.internal";
+                var pgHost = "reactivities-arigatory-db.fly.dev";
                 var pgPort = "5432";
 
                 connStr = $"Server={pgHost};Port={pgPort};User Id={pgUser};Password={pgPass};Database=reactivities;";
